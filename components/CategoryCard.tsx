@@ -1,15 +1,20 @@
 import { PropsWithChildren } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+
 import { Color } from "../utils/colors";
 
-interface CategoryGridCardInput extends PropsWithChildren {
+interface CategoryCardInput extends PropsWithChildren {
   color: string;
+  onPress: () => void;
 }
 
-function CategoryGridCard({ children, color }: CategoryGridCardInput) {
+function CategoryCard({ children, color, onPress }: CategoryCardInput) {
   return (
     <View style={styles.card}>
-      <Pressable style={[styles.innerContainer, { backgroundColor: color }]}>
+      <Pressable
+        style={[styles.innerContainer, { backgroundColor: color }]}
+        onPress={onPress}
+      >
         <Text style={styles.title}>{children}</Text>
       </Pressable>
     </View>
@@ -44,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryGridCard;
+export default CategoryCard;

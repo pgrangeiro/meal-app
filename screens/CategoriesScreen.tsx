@@ -1,16 +1,32 @@
-import { FlatList, Text } from "react-native";
-import { CATEGORIES } from "../data/dummy-data";
-import CategoryGridCard from "../components/CategoryGridCard";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { FlatList } from "react-native";
 
-function CategoriesScreen() {
+import { CATEGORIES } from "../data/dummy-data";
+import { Navigation, NavigationRouter } from "../utils/navigation";
+
+import CategoryCard from "../components/CategoryCard";
+
+type CategoriesScreeenProps = NativeStackScreenProps<
+  NavigationRouter,
+  Navigation.CATEGORIES
+>;
+
+function CategoriesScreen({ navigation }: CategoriesScreeenProps) {
+  function onPressHandler(categoryId: string) {
+    navigation.navigate(Navigation.MEALS_OVERVIEW, { categoryId });
+  }
+
   return (
     <FlatList
       numColumns={2}
       data={CATEGORIES}
       renderItem={(data) => (
-        <CategoryGridCard color={data.item.color}>
+        <CategoryCard
+          color={data.item.color}
+          onPress={() => onPressHandler(data.item.id)}
+        >
           {data.item.name}
-        </CategoryGridCard>
+        </CategoryCard>
       )}
     ></FlatList>
   );
