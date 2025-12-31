@@ -1,7 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
+
 import { MEALS } from "../data/dummy-data";
 import { Navigation, NavigationRouter } from "../utils/navigation";
+
+import MealCard from "../components/MealCard";
 
 type MealsOverviewScreenProps = NativeStackScreenProps<
   NavigationRouter,
@@ -15,7 +18,15 @@ function MealsOverviewScreen({ route }: MealsOverviewScreenProps) {
   return (
     <FlatList
       data={meals}
-      renderItem={(data) => <Text>{data.item.title}</Text>}
+      renderItem={(data) => (
+        <MealCard
+          title={data.item.title}
+          duration={data.item.duration}
+          complexity={data.item.complexity}
+          affordability={data.item.affordability}
+          imageUrl={data.item.imageUrl}
+        ></MealCard>
+      )}
     ></FlatList>
   );
 }
