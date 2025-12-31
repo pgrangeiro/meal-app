@@ -4,6 +4,6 @@ export enum Navigation {
 }
 
 export type NavigationRouter = {
-  [Navigation.CATEGORIES]: undefined;
+  [Navigation.CATEGORIES]: {};
   [Navigation.MEALS_OVERVIEW]: { categoryId: string };
 };

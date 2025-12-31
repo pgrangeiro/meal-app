@@ -1,5 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -11,6 +14,11 @@ import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 
 const Stack = createNativeStackNavigator<NavigationRouter>();
+const navigationOptions: NativeStackNavigationOptions = {
+  headerStyle: { backgroundColor: Color.LIGHT_BROW },
+  headerTintColor: Color.WHITE,
+  contentStyle: { backgroundColor: Color.MEDIUM_BROW },
+};
 
 export default function App() {
   return (
@@ -18,7 +26,7 @@ export default function App() {
       <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
           <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={navigationOptions}>
               <Stack.Screen
                 name={Navigation.CATEGORIES}
                 component={CategoriesScreen}
