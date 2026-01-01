@@ -4,8 +4,7 @@ import { FlatList } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import { Navigation, NavigationRouter } from "../utils/navigation";
 
-import Card from "../components/Meal/Card";
-import { useLayoutEffect } from "react";
+import Card from "../components/meal/Card";
 
 type MealsOverviewScreenProps = NativeStackScreenProps<
   NavigationRouter,
@@ -17,15 +16,9 @@ function MealsOverviewScreen({ navigation, route }: MealsOverviewScreenProps) {
   const meals = MEALS.filter((item) => item.categoryIds.includes(categoryId));
   const category = CATEGORIES.filter((item) => item.id === categoryId)[0];
 
-  function onSelectMeal(id: string) {
+  function onSelectMealHandler(id: string) {
     navigation.navigate(Navigation.MEAL_DETAILS, { id });
   }
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      title: category.name,
-    });
-  }, [navigation, category]);
 
   return (
     <FlatList
@@ -37,7 +30,7 @@ function MealsOverviewScreen({ navigation, route }: MealsOverviewScreenProps) {
           complexity={data.item.complexity}
           affordability={data.item.affordability}
           imageUrl={data.item.imageUrl}
-          onPress={() => onSelectMeal(data.item.id)}
+          onPress={() => onSelectMealHandler(data.item.id)}
         ></Card>
       )}
     ></FlatList>

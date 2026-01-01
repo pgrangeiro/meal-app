@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { Navigation, NavigationRouter } from "../utils/navigation";
 
-import Card from "../components/Category/Card";
+import Card from "../components/category/Card";
 
 type CategoriesScreeenProps = NativeStackScreenProps<
   NavigationRouter,

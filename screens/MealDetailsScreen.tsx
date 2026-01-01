@@ -1,12 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Navigation, NavigationRouter } from "../utils/navigation";
-import { MEALS } from "../data/dummy-data";
-import Summary from "../components/Meal/Summary";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Color } from "../utils/colors";
-import Subtitle from "../components/Meal/Subtitle";
-import List from "../components/Meal/List";
 import { useLayoutEffect } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+
+import List from "../components/meal/List";
+import Summary from "../components/meal/Summary";
+import HomeButton from "../components/ui/HomeButton";
+import { MEALS } from "../data/dummy-data";
+import { Color } from "../utils/colors";
+import { Navigation, NavigationRouter } from "../utils/navigation";
 
 type MealDetailsScreenProps = NativeStackScreenProps<
   NavigationRouter,
@@ -20,6 +21,7 @@ function MealDetailsScreen({ navigation, route }: MealDetailsScreenProps) {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: meal.title,
+      headerRight: () => <HomeButton></HomeButton>,
     });
   }, [navigation, meal]);
 
