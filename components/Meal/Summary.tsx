@@ -1,7 +1,6 @@
-import { View, Text, Pressable, Image, StyleSheet } from "react-native";
-import { Color } from "../utils/colors";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-interface MealCardProps {
+interface SummaryProps {
   title: string;
   imageUrl: string;
   duration: number;
@@ -9,15 +8,15 @@ interface MealCardProps {
   affordability: string;
 }
 
-function MealCard({
+function Summary({
   title,
   imageUrl,
   duration,
   complexity,
   affordability,
-}: MealCardProps) {
+}: SummaryProps) {
   return (
-    <Pressable style={styles.container}>
+    <>
       <View>
         <Image source={{ uri: imageUrl }} style={styles.image}></Image>
         <Text style={styles.title}>{title}</Text>
@@ -27,10 +26,9 @@ function MealCard({
         <Text style={styles.tag}>{complexity.toUpperCase()}</Text>
         <Text style={styles.tag}>{affordability.toUpperCase()}</Text>
       </View>
-    </Pressable>
+    </>
   );
 }
-
 const styles = StyleSheet.create({
   image: {
     width: "100%",
@@ -44,19 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     margin: 8,
   },
-  container: {
-    margin: 16,
-    borderRadius: 8,
-    backgroundColor: Color.WHITE,
-    elevation: 4,
-    shadowColor: Color.BLACK,
-    shadowOffset: {
-      height: 1,
-      width: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-  },
   content: {
     flexDirection: "row",
     alignItems: "center",
@@ -69,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MealCard;
+export default Summary;
