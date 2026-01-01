@@ -1,14 +1,14 @@
 import { PropsWithChildren } from "react";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { Color } from "../utils/colors";
+import { Color } from "../../utils/colors";
 
-interface CategoryCardInput extends PropsWithChildren {
+interface CardInput extends PropsWithChildren {
   color: string;
   onPress: () => void;
 }
 
-function CategoryCard({ children, color, onPress }: CategoryCardInput) {
+function Card({ children, color, onPress }: CardInput) {
   return (
     <View style={styles.card}>
       <Pressable
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryCard;
+export default Card;

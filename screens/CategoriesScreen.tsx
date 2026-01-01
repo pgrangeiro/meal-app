@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import { Navigation, NavigationRouter } from "../utils/navigation";
 
-import CategoryCard from "../components/CategoryCard";
+import Card from "../components/Category/Card";
 
 type CategoriesScreeenProps = NativeStackScreenProps<
   NavigationRouter,
@@ -21,12 +21,12 @@ function CategoriesScreen({ navigation }: CategoriesScreeenProps) {
       numColumns={2}
       data={CATEGORIES}
       renderItem={(data) => (
-        <CategoryCard
+        <Card
           color={data.item.color}
           onPress={() => onPressHandler(data.item.id)}
         >
           {data.item.name}
-        </CategoryCard>
+        </Card>
       )}
     ></FlatList>
   );

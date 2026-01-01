@@ -1,10 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FlatList } from "react-native";
 
-import { MEALS } from "../data/dummy-data";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
 import { Navigation, NavigationRouter } from "../utils/navigation";
 
 import Card from "../components/Meal/Card";
+import { useLayoutEffect } from "react";
 
 type MealsOverviewScreenProps = NativeStackScreenProps<
   NavigationRouter,
@@ -14,10 +15,17 @@ type MealsOverviewScreenProps = NativeStackScreenProps<
 function MealsOverviewScreen({ navigation, route }: MealsOverviewScreenProps) {
   const { categoryId } = route.params;
   const meals = MEALS.filter((item) => item.categoryIds.includes(categoryId));
+  const category = CATEGORIES.filter((item) => item.id === categoryId)[0];
 
   function onSelectMeal(id: string) {
     navigation.navigate(Navigation.MEAL_DETAILS, { id });
   }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: category.name,
+    });
+  }, [navigation, category]);
 
   return (
     <FlatList
